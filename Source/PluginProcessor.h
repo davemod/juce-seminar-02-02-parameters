@@ -14,6 +14,8 @@
 //==============================================================================
 /**
 */
+using APVTS = juce::AudioProcessorValueTreeState;
+
 class ParamsAudioProcessor  : public juce::AudioProcessor
 {
 public:
