@@ -9,12 +9,7 @@
 #pragma once
 
 #include <JuceHeader.h>
-#include "Params.h"
-
-//==============================================================================
-/**
-*/
-using APVTS = juce::AudioProcessorValueTreeState;
+#include "APVTS.h"
 
 class ParamsAudioProcessor  : public juce::AudioProcessor
 {
@@ -56,7 +51,10 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
+	APVTS& getPluginState () { return state; }
 private:
+	APVTS state{ *this };
+
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParamsAudioProcessor)
 };

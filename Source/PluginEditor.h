@@ -30,7 +30,7 @@ private:
     ParamsAudioProcessor& audioProcessor;
 
     juce::Slider delaySlider;
-    std::unique_ptr<juce::SliderParameterAttachment> delayAttachment;
+    std::unique_ptr<APVTS::SliderAttachment> delayAttachment;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParamsAudioProcessorEditor)
 };

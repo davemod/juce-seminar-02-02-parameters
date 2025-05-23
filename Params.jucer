@@ -11,6 +11,9 @@
       <FILE id="QbNbAa" name="PluginEditor.cpp" compile="1" resource="0"
             file="Source/PluginEditor.cpp"/>
       <FILE id="ysVmyJ" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <FILE id="JDwsOX" name="APVTS.cpp" compile="1" resource="0" file="Source/APVTS.cpp"/>
+      <FILE id="H9ZSJH" name="APVTS.h" compile="0" resource="0" file="Source/APVTS.h"/>
+      <FILE id="KddzoE" name="Params.h" compile="0" resource="0" file="Source/Params.h"/>
     </GROUP>
   </MAINGROUP>
   <MODULES>

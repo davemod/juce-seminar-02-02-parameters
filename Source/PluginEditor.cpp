@@ -19,18 +19,7 @@ ParamsAudioProcessorEditor::ParamsAudioProcessorEditor (ParamsAudioProcessor& p)
     
     addAndMakeVisible(delaySlider);
     
-    auto findParameter = [&](const juce::ParameterID& paramId)
-    {
-        for (auto param : p.getParameters ())
-            if (auto ranged = dynamic_cast<juce::RangedAudioParameter*> (param))
-                if (ranged->getParameterID () == paramId.getParamID())
-                    return ranged;
-        
-        return static_cast<juce::RangedAudioParameter*> (nullptr);
-    };
-
-    if (auto delayParam = findParameter (Params::delayTimeId))
-        delayAttachment = std::make_unique<juce::SliderParameterAttachment> (*delayParam, delaySlider, nullptr);
+	delayAttachment = std::make_unique<APVTS::SliderAttachment> (p.getPluginState (), Params::delayTimeId.getParamID (), delaySlider);
 }
 
 ParamsAudioProcessorEditor::~ParamsAudioProcessorEditor()
