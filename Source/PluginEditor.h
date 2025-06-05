@@ -10,6 +10,7 @@
 
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
+#include "Attachments.h"
 
 //==============================================================================
 /**
@@ -30,7 +31,13 @@ private:
     ParamsAudioProcessor& audioProcessor;
 
     juce::Slider delaySlider;
-    std::unique_ptr<APVTS::SliderAttachment> delayAttachment;
+    APVTS::SliderAttachment delayAttachment;
     
+    juce::ComboBox timeSignatureBox;
+    Better::ComboBoxAttachment timeSignatureAttachment;
+
+	juce::ToggleButton syncBox;
+	Better::ButtonAttachment syncAttachment;
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParamsAudioProcessorEditor)
 };

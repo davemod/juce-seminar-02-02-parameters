@@ -11,15 +11,21 @@
 
 //==============================================================================
 ParamsAudioProcessorEditor::ParamsAudioProcessorEditor (ParamsAudioProcessor& p)
-    : AudioProcessorEditor (&p), audioProcessor (p)
+: AudioProcessorEditor (&p)
+, audioProcessor (p)
+, delayAttachment (p.getPluginState (), Params::delayTimeId.getParamID (), delaySlider)
+, timeSignatureAttachment (p.getPluginState (), Params::delayTimeSignatureId.getParamID (), timeSignatureBox)
+, syncAttachment (p.getPluginState (), Params::delaySyncId.getParamID (), syncBox)
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
     setSize (400, 300);
     
     addAndMakeVisible(delaySlider);
-    
-	delayAttachment = std::make_unique<APVTS::SliderAttachment> (p.getPluginState (), Params::delayTimeId.getParamID (), delaySlider);
+	addAndMakeVisible(timeSignatureBox);
+	addAndMakeVisible(syncBox);
+
+	delaySlider.setSliderStyle (juce::Slider::RotaryHorizontalVerticalDrag);
 }
 
 ParamsAudioProcessorEditor::~ParamsAudioProcessorEditor()
@@ -29,15 +35,15 @@ ParamsAudioProcessorEditor::~ParamsAudioProcessorEditor()
 //==============================================================================
 void ParamsAudioProcessorEditor::paint (juce::Graphics& g)
 {
-    // (Our component is opaque, so we must completely fill the background with a solid colour)
     g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
-
-    g.setColour (juce::Colours::white);
-    g.setFont (juce::FontOptions (15.0f));
-    g.drawFittedText ("Hello World!", getLocalBounds(), juce::Justification::centred, 1);
 }
 
 void ParamsAudioProcessorEditor::resized()
 {
-    delaySlider.setBounds (getLocalBounds ().reduced (20));
+    auto size = juce::jmin(getWidth(), getHeight());
+	auto bounds = getLocalBounds ().withSizeKeepingCentre (size, size);
+
+	syncBox.setBounds (bounds.removeFromTop (40).reduced (6));
+	timeSignatureBox.setBounds (bounds.removeFromTop (40).reduced (6));
+	delaySlider.setBounds (bounds.reduced (6));
 }
